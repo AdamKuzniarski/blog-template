@@ -17,6 +17,7 @@ export default function HomePage() {
           Ein reduzierter Blog mit focus auf Typografie
         </p>
       </header>
+      // test comment
       <section className={'grid gap-4 sm:grid-cols-2'}>
         {links.map((link) => (
           <Link
