@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-type Theme = 'system' | 'light' | 'dark';
+type Theme = 'light' | 'dark' | 'system';
 
 const STORAGE_KEY = 'theme';
 
@@ -24,9 +24,9 @@ export function ThemeToggle() {
   useEffect(() => {
     const savedTheme = localStorage.getItem(STORAGE_KEY);
     const nextTheme: Theme =
-      savedTheme === 'light' || savedTheme === 'dark' || savedTheme === 'system'
-        ? savedTheme
-        : 'system';
+        savedTheme === 'light' || savedTheme === 'dark' || savedTheme === 'system'
+            ? savedTheme
+            : 'system';
 
     setTheme(nextTheme);
     applyTheme(nextTheme);
@@ -40,6 +40,7 @@ export function ThemeToggle() {
         applyTheme('system');
       }
     };
+
     mediaQuery.addEventListener('change', handleChange);
 
     return () => {
@@ -54,43 +55,43 @@ export function ThemeToggle() {
   }
 
   return (
-    <div className={'inline-flex rounded-full border border-border bg-surface p-1'}>
-      <ThemeButton
-        isActive={theme === 'light'}
-        label={'Hell'}
-        onClick={() => handleThemeChange('light')}
-      />
-      <ThemeButton
-        isActive={theme === 'dark'}
-        label={'Dunkel'}
-        onClick={() => handleThemeChange('dark')}
-      />
-      <ThemeButton
-        isActive={theme === 'system'}
-        label={'System'}
-        onClick={() => handleThemeChange('system')}
-      />
-    </div>
+      <div className="inline-flex rounded-full border border-border bg-surface p-1">
+        <ThemeButton
+            isActive={theme === 'light'}
+            label="Hell"
+            onClick={() => handleThemeChange('light')}
+        />
+        <ThemeButton
+            isActive={theme === 'dark'}
+            label="Dunkel"
+            onClick={() => handleThemeChange('dark')}
+        />
+        <ThemeButton
+            isActive={theme === 'system'}
+            label="System"
+            onClick={() => handleThemeChange('system')}
+        />
+      </div>
   );
 }
 
 type ThemeButtonProps = {
   isActive: boolean;
   label: string;
-  onClick?: () => void;
+  onClick: () => void;
 };
 
 function ThemeButton({ isActive, label, onClick }: ThemeButtonProps) {
   return (
-    <button
-      type={'button'}
-      onClick={onClick}
-      className={[
-        'rounded-full px-3 py-1.5 target-sm transition-colors',
-        isActive ? 'bg-text text-page' : 'text-muted hover:text-text',
-      ].join(' ')}
-    >
-      {label}
-    </button>
+      <button
+          type="button"
+          onClick={onClick}
+          className={[
+            'rounded-full px-3 py-1.5 text-sm transition-colors',
+            isActive ? 'bg-text text-page' : 'text-muted hover:text-text',
+          ].join(' ')}
+      >
+        {label}
+      </button>
   );
 }
