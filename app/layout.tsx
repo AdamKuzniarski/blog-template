@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { Inter, Source_Serif_4 } from 'next/font/google';
-import { ThemeToggle } from '@/components/theme-toggle';
+import { SiteHeader } from '@/components/site/site-header';
+import { SiteFooter } from '@/components/site/site-footer';
 import './globals.css';
 
 const inter = Inter({
@@ -52,13 +52,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className={'bg-page font-sans text-text antialiased'}>
-        <header className={'border-b border-border'}>
-          <div>
-            <Link href="/">Blog Platform</Link>
-            <ThemeToggle />
-          </div>
-        </header>
-        {children}
+        <SiteHeader />
+        <div className="flex min-h-[calc(100vh-65px)] flex-col">
+          <div className="flex-1">{children}</div>
+        </div>
+        <SiteFooter />
       </body>
     </html>
   );
