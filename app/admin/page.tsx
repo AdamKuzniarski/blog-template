@@ -1,21 +1,29 @@
+import { Card } from '@/components/primitives/card';
 import { Container } from '../../components/container';
 import { PageIntro } from '../../components/page-intro';
+import { Section } from '@/components/primitives/section';
 
 export default function AdminPage() {
   return (
-    <main className="min-h-screen py-16 sm:py-20">
-      <Container className="max-w-3xl">
+    <Section>
+      <Container size="narrow" className="flex flex-col gap-10">
         <PageIntro
+          eyebrow="Intern"
           title="Admin"
-          description="Interner Bereich für Anmeldung, Verwaltung und spätere Pflege von Inhalten."
+          description="Dieser Bereich wird im nächsten Abschnitt an Auth und API angeschlossen. Vorher bleibt die Oberfläche bewust klein und klar."
         />
 
-        <section className="mt-10 rounded-2xl border border-border bg-surface px-6 py-8">
-          <p className="text-base leading-7 text-muted">
-            Der Zugriffsschutz kommt im nächsten Schritt über die API.
-          </p>
-        </section>
+        <div className="grid gap-4">
+          <Card>
+            <h2 className="font-serif text-2xl tracking-tight">Geplante Funktionen</h2>
+            <ul className="mt-4 space-y-3 text-base leading-7 text-muted">
+              <li>Anmeldung und geschützte Routen</li>
+              <li>Benutzerprofil und Rollen</li>
+              <li>später Post-Verwaltung und Drafts</li>
+            </ul>
+          </Card>
+        </div>
       </Container>
-    </main>
+    </Section>
   );
 }
