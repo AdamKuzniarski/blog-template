@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 type ContainerProps = {
   children: ReactNode;
@@ -14,9 +14,7 @@ const sizeClasses = {
 export function Container({ children, size = 'default', className }: ContainerProps) {
   return (
     <div
-      className={['mx-auto w-full px-6 sm:px-8', sizeClasses[size], className]
-        .filter(Boolean)
-        .join(' ')}
+      className={['mx-auto w-full px-6 sm:px-8', sizeClasses[size], className].filter(Boolean).join(' ')}
     >
       {children}
     </div>

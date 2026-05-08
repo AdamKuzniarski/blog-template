@@ -1,4 +1,4 @@
-import { act, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 type PageIntroProps = {
   title: string;
