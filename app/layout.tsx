@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Source_Serif_4 } from 'next/font/google';
-import { SiteHeader } from '@/components/site/site-header';
 import { SiteFooter } from '@/components/site/site-footer';
+import { SiteHeader } from '@/components/site/site-header';
 import './globals.css';
 
 const inter = Inter({
@@ -9,9 +9,9 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const sourceSerif4 = Source_Serif_4({
+const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
-  variable: '--font-source-serif-4',
+  variable: '--font-source-serif',
 });
 
 const themeScript = `
@@ -37,25 +37,27 @@ const themeScript = `
 `;
 
 export const metadata: Metadata = {
-  title: 'Blog Platform',
-  description: 'Simple blogging platform built with Next.js and TypeScript',
+  title: 'Codenotes',
+  description: 'Schlichter Blog über Web, Software und Entwicklung.',
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="de"
       suppressHydrationWarning
-      className={`${inter.variable} ${sourceSerif4.variable}`}
+      className={`${inter.variable} ${sourceSerif.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={'bg-page font-sans text-text antialiased'}>
+      <body className="flex min-h-screen flex-col bg-page font-sans text-text antialiased">
         <SiteHeader />
-        <div className="flex min-h-[calc(100vh-65px)] flex-col">
-          <div className="flex-1">{children}</div>
-        </div>
+        <main className="flex-1">{children}</main>
         <SiteFooter />
       </body>
     </html>
