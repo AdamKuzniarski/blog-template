@@ -13,6 +13,7 @@ const dateFormatter = new Intl.DateTimeFormat('de-DE', {
   day: '2-digit',
   month: 'long',
   year: 'numeric',
+  timeZone: 'UTC',
 });
 
 export const dynamicParams = false;
