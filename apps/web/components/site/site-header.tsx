@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Container } from '../container';
-import { ThemeToggle } from '../theme-toggle';
+import { Container } from '@/components/primitives/container';
+import { ThemeToggle } from '@/components/site/theme-toggle';
 
 const navItems = [
   { href: '/blog', label: 'Blog' },
