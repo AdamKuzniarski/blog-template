@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Container } from '../container';
+import { Container } from '@/components/primitives/container';
 
 export function SiteFooter() {
   return (
