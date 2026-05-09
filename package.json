@@ -1,36 +1,16 @@
 {
-  "name": "web",
-  "version": "0.1.0",
+  "name": "blog-platform",
   "private": true,
+  "packageManager": "pnpm@10.12.1",
   "scripts": {
-    "dev": "next dev",
-    "typecheck": "tsc --noEmit",
-    "typecheck:watch": "tsc --noEmit --watch --preserveWatchOutput",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
-  },
-  "dependencies": {
-    "@mdx-js/loader": "^3.1.1",
-    "@mdx-js/react": "^3.1.1",
-    "@next/mdx": "^16.2.6",
-    "@types/mdx": "^2.0.13",
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "dev:web": "pnpm --filter web dev",
+    "build:web": "pnpm --filter web build",
+    "lint:web": "pnpm --filter web lint",
+    "typecheck:web": "pnpm --filter web typecheck",
+    "format": "pnpm exec prettier . --write",
+    "format:check": "pnpm exec prettier . --check"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.8.3",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "prettier": "3.8.3"
   }
 }

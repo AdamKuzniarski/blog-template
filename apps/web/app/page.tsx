@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ButtonLink } from '@/components/primitives/button-link';
 import { Card } from '@/components/primitives/card';
-import { Container } from '@/components/container';
+import { Container } from '@/components/primitives/container';
 import { Section } from '@/components/primitives/section';
 import { getAllPosts } from '@/content/posts';
 
