@@ -1,4 +1,3 @@
-import { beforeEach } from 'node:test';
 import { HealthService } from './health.service';
 
 describe('HealthService', () => {

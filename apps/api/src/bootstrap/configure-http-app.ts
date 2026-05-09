@@ -1,6 +1,6 @@
 import type { INestApplication } from '@nestjs/common';
 import { ValidationPipe } from '@nestjs/common';
-import { GlobalExceptionFilter } from '..common/filters/global-exception.filter';
+import { GlobalExceptionFilter } from '../common/filters/global-exception.filter';
 
 export function configureHttpApp(app: INestApplication): void {
   app.setGlobalPrefix('api');
