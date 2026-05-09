@@ -1,0 +1,16 @@
+{
+  "name": "blog-platform",
+  "private": true,
+  "packageManager": "pnpm@10.12.1",
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "build:web": "pnpm --filter web build",
+    "lint:web": "pnpm --filter web lint",
+    "typecheck:web": "pnpm --filter web typecheck",
+    "format": "pnpm exec prettier . --write",
+    "format:check": "pnpm exec prettier . --check"
+  },
+  "devDependencies": {
+    "prettier": "3.8.3"
+  }
+}
