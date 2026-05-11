@@ -29,6 +29,7 @@ describe('HealthController (e2e)', () => {
     expect(response.body).toEqual({
       status: 'ok',
       service: 'api',
+      database: 'up',
       timestamp: expect.any(String),
     });
 
