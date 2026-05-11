@@ -55,8 +55,16 @@ export function ThemeToggle() {
 
   return (
     <div className="inline-flex rounded-full border border-border bg-surface p-1">
-      <ThemeButton isActive={theme === 'light'} label="Hell" onClick={() => handleThemeChange('light')} />
-      <ThemeButton isActive={theme === 'dark'} label="Dunkel" onClick={() => handleThemeChange('dark')} />
+      <ThemeButton
+        isActive={theme === 'light'}
+        label="Hell"
+        onClick={() => handleThemeChange('light')}
+      />
+      <ThemeButton
+        isActive={theme === 'dark'}
+        label="Dunkel"
+        onClick={() => handleThemeChange('dark')}
+      />
       <ThemeButton
         isActive={theme === 'system'}
         label="System"
