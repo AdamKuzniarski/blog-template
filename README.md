@@ -1,5 +1,39 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## API + Postgres (Local)
+
+Use the monorepo scripts from the repository root:
+
+```bash
+pnpm install
+```
+
+Create `apps/api/.env` based on `apps/api/.env.example` and set real credentials:
+
+```env
+PORT=4000
+DATABASE_URL=postgresql://<DB_USER>:<DB_PASSWORD>@localhost:5432/blog_platform?schema=public
+```
+
+Start local Postgres:
+
+```bash
+pnpm dev:db
+```
+
+Run Prisma migration and start API:
+
+```bash
+pnpm prisma:migrate
+pnpm dev:api
+```
+
+Stop Postgres:
+
+```bash
+pnpm stop:db
+```
+
 ## Getting Started
 
 First, run the development server:
