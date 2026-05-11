@@ -3,6 +3,10 @@
   "private": true,
   "packageManager": "pnpm@10.12.1",
   "scripts": {
+    "dev:db": "docker compose -f infra/docker/compose.yaml up -d",
+    "stop:db": "docker compose -f infra/docker/compose.yaml down",
+    "prisma:migrate": "pnpm --filter api prisma:migrate",
+    "prisma:studio": "pnpm --filter api prisma:studio",
     "dev:web": "pnpm --filter web dev",
     "build:web": "pnpm --filter web build",
     "lint:web": "pnpm --filter web lint",
