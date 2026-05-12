@@ -1,4 +1,4 @@
-import type { Role } from 'src/generated/prisma/enums';
+import type { Role } from '../../../../generated/prisma/enums';
 
 export const AUTH_TOKEN_SERVICE = Symbol('AUTH_TOKEN_SERVICE');
 

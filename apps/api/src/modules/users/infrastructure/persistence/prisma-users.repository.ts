@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/database/prisma/prisma.service';
+import { PrismaService } from '../../../../database/prisma/prisma.service';
 import type { User } from '../../domain/user';
 import type { UsersRepository } from '../../application/ports/users.repository';
 import type { User as PrismaUser } from '../../../../generated/prisma/client';
@@ -9,9 +9,12 @@ export class PrismaUsersRepository implements UsersRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
   async findByEmail(email: string): Promise<User | null> {
-    const user = await this.prismaService.db.user.findUnique({
+    const user = await this.prismaService.db.user.findFirst({
       where: {
-        email,
+        email: {
+          equals: email,
+          mode: 'insensitive',
+        },
       },
     });
     if (user === null) {
