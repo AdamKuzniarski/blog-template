@@ -23,7 +23,11 @@ module.exports = {
       displayName: 'integration',
       rootDir: '.',
       roots: ['<rootDir>/test'],
-      testRegex: '.*\\.integration-spec\\.ts$',
+      testMatch: [
+        '<rootDir>/test/integration/**/*.spec.ts',
+        '<rootDir>/test/integration/**/*-spec.ts',
+        '<rootDir>/test/integration/**/*.integration-spec.ts',
+      ],
       testTimeout: 60000,
     },
     {
