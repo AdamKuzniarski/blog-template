@@ -11,6 +11,6 @@ export type CreateRefreshSessionInput = {
   readonly ipAddress?: string;
 };
 
-export interface RefreshRepository {
+export interface RefreshSessionsRepository {
   create(input: CreateRefreshSessionInput): Promise<void>;
 }
