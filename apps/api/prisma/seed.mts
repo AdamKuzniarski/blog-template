@@ -14,6 +14,7 @@ const seedEnvSchema = z.object({
 
 async function main(): Promise<void> {
   const env = seedEnvSchema.parse(process.env);
+  const normalizedAdminEmail = env.SEED_ADMIN_EMAIL.trim().toLowerCase();
 
   const pool = new Pool({
     connectionString: env.DATABASE_URL,
@@ -29,15 +30,16 @@ async function main(): Promise<void> {
 
     const adminUser = await prisma.user.upsert({
       where: {
-        email: env.SEED_ADMIN_EMAIL,
+        email: normalizedAdminEmail,
       },
       update: {
+        email: normalizedAdminEmail,
         name: env.SEED_ADMIN_NAME,
         passwordHash,
         role: Role.ADMIN,
       },
       create: {
-        email: env.SEED_ADMIN_EMAIL,
+        email: normalizedAdminEmail,
         name: env.SEED_ADMIN_NAME,
         passwordHash,
         role: Role.ADMIN,
