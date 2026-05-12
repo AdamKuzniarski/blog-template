@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import { Injectable, Inject, UnauthorizedException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import {AUTH_SETTINGS, type AuthSettings} from './ports/auth-settings';
 import {
   AUTH_TOKEN_SERVICE,
   type AuthTokenService,
@@ -39,7 +39,8 @@ export class LoginUseCase {
     private readonly authTokenService: AuthTokenService,
     @Inject(REFRESH_SESSIONS_REPOSITORY)
     private readonly refreshSessionsRepository: RefreshSessionsRepository,
-    private readonly configService: ConfigService,
+    @Inject(AUTH_SETTINGS)
+    private readonly authSettings: AuthSettings,
   ) {}
 
   async execute(command: LoginCommand): Promise<LoginResult> {
@@ -73,9 +74,7 @@ export class LoginUseCase {
     });
 
     const refreshTokenHash = await this.hashingService.hash(refreshToken);
-    const refreshTtlDays = this.configService.getOrThrow<number>(
-      'auth.refreshTtlDays',
-    );
+    const refreshTtlDays = this.authSettings.getRefreshTtlDays();
 
     const refreshSessionInput: CreateRefreshSessionInput = {
       id: sessionId,

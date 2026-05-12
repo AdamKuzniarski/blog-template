@@ -19,7 +19,11 @@
     "test:watch:api": "pnpm --filter api test:watch",
     "test:e2e:api": "pnpm --filter api test:e2e",
     "format": "pnpm exec prettier . --write",
-    "format:check": "pnpm exec prettier . --check"
+    "format:check": "pnpm exec prettier . --check",
+    "test:unit:api": "pnpm --filter api test:unit",
+    "test:integration:api": "pnpm --filter api test:integration",
+    "test:e2e:api": "pnpm --filter api test:e2e",
+    "test:all:api": "pnpm --filter api test:all"
   },
   "devDependencies": {
     "prettier": "3.8.3"

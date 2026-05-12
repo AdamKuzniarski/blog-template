@@ -5,7 +5,10 @@ allowBuilds:
   '@nestjs/core': true
   '@prisma/engines': true
   bcrypt: true
+  cpu-features: set this to true or false
   esbuild: true
   prisma: true
+  protobufjs: set this to true or false
   sharp: true
+  ssh2: set this to true or false
   unrs-resolver: true

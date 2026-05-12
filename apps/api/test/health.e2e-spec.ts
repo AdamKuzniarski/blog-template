@@ -6,7 +6,7 @@ import { configureHttpApp } from '../src/bootstrap/configure-http-app';
 import type { HealthResponseDto } from '../src/modules/health/presentation/dto/health-response.dto';
 
 describe('HealthController (e2e)', () => {
-  let app: INestApplication;
+  let app: INestApplication | null = null;
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -19,10 +19,18 @@ describe('HealthController (e2e)', () => {
   });
 
   afterAll(async () => {
-    await app.close();
+    if (app) {
+      await app.close();
+    }
   });
 
   it('GET /api/health returns service health', async () => {
+    if (!app) {
+      throw new Error(
+        'Nest application was not initialized. Check the beforeAll error output.',
+      );
+    }
+
     const httpServer = app.getHttpServer() as unknown as Parameters<
       typeof request
     >[0];

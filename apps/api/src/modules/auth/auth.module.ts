@@ -10,6 +10,8 @@ import { BcryptHashingService } from './infrastructure/crypto/bcrypt-hashing.ser
 import { JwtAuthTokenService } from './infrastructure/jwt/jwt-auth-token.service';
 import { PrismaRefreshSessionRepository } from './infrastructure/persistence/prisma-refresh-sessions.repository';
 import { AuthController } from './presentation/auth.controller';
+import { AUTH_SETTINGS } from './application/ports/auth-settings';
+import { ConfigAuthSettings } from './infrastructure/config/config-auth-setting';
 
 @Module({
   imports: [JwtModule.register({}), PrismaModule, UsersModule],
@@ -30,6 +32,10 @@ import { AuthController } from './presentation/auth.controller';
     {
       provide: REFRESH_SESSIONS_REPOSITORY,
       useExisting: PrismaRefreshSessionRepository,
+    },
+    {
+      provide: AUTH_SETTINGS,
+      useExisting: ConfigAuthSettings,
     },
   ],
 })
