@@ -6,6 +6,6 @@ export type User = {
   readonly passwordHash: string;
   readonly name: string | null;
   readonly role: Role;
-  readonly cratedAt: Date;
+  readonly createdAt: Date;
   readonly updatedAt: Date;
 };

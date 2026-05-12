@@ -8,7 +8,7 @@ import { HASHING_SERVICE } from './application/ports/hashing.service';
 import { REFRESH_SESSIONS_REPOSITORY } from './application/ports/refresh-sessions.repository';
 import { BcryptHashingService } from './infrastructure/crypto/bcrypt-hashing.service';
 import { JwtAuthTokenService } from './infrastructure/jwt/jwt-auth-token.service';
-import { PrismaRefreshSessionsRepository } from './infrastructure/persistence/prisma-refresh-sessions.repository';
+import { PrismaRefreshSessionRepository } from './infrastructure/persistence/prisma-refresh-sessions.repository';
 import { AuthController } from './presentation/auth.controller';
 
 @Module({
@@ -18,7 +18,7 @@ import { AuthController } from './presentation/auth.controller';
     LoginUseCase,
     BcryptHashingService,
     JwtAuthTokenService,
-    PrismaRefreshSessionsRepository,
+    PrismaRefreshSessionRepository,
     {
       provide: HASHING_SERVICE,
       useExisting: BcryptHashingService,
@@ -29,7 +29,7 @@ import { AuthController } from './presentation/auth.controller';
     },
     {
       provide: REFRESH_SESSIONS_REPOSITORY,
-      useExisting: PrismaRefreshSessionsRepository,
+      useExisting: PrismaRefreshSessionRepository,
     },
   ],
 })

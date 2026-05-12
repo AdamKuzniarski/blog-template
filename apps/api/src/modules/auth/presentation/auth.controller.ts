@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import type { Request } from 'express';
 import { LoginUseCase } from '../application/login.use-case';
+import type { LoginCommand } from '../application/dto/login-command';
 import type { LoginResponseDto } from './dto/login-response.dto';
 import { LoginRequestDto } from './dto/login-request.dto';
 
@@ -21,12 +22,17 @@ export class AuthController {
     @Body() body: LoginRequestDto,
     @Req() request: Request,
   ): Promise<LoginResponseDto> {
-    return this.loginUseCase.execute({
+    const userAgent = normalizeHeaderValue(request.headers['user-agent']);
+    const ipAddress = request.ip;
+
+    const command: LoginCommand = {
       email: body.email,
       password: body.password,
-      userAgent: normalizeHeaderValue(request.headers['user-agent']),
-      ipAddress: request.ip,
-    });
+      ...(userAgent !== undefined ? { userAgent } : {}),
+      ...(ipAddress !== undefined ? { ipAddress } : {}),
+    };
+
+    return this.loginUseCase.execute(command);
   }
 }
 function normalizeHeaderValue(

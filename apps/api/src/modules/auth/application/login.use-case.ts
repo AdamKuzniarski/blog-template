@@ -8,7 +8,8 @@ import {
 import { HASHING_SERVICE, type HashingService } from './ports/hashing.service';
 import {
   REFRESH_SESSIONS_REPOSITORY,
-  RefreshSessionsRepository,
+  type CreateRefreshSessionInput,
+  type RefreshSessionsRepository,
 } from './ports/refresh-sessions.repository';
 import {
   USERS_REPOSITORY,
@@ -60,7 +61,7 @@ export class LoginUseCase {
 
     const accessToken = await this.authTokenService.signAccessToken({
       sub: user.id,
-      email: user.email,
+      sid: sessionId,
       role: user.role,
       type: 'access',
     });
@@ -76,14 +77,20 @@ export class LoginUseCase {
       'auth.refreshTtlDays',
     );
 
-    await this.refreshSessionsRepository.create({
-      id: sessioId,
+    const refreshSessionInput: CreateRefreshSessionInput = {
+      id: sessionId,
       userId: user.id,
       tokenHash: refreshTokenHash,
       expiresAt: addDays(new Date(), refreshTtlDays),
-      userAgent: command.userAgent,
-      ipAddress: command.ipAddress,
-    });
+      ...(command.userAgent !== undefined
+        ? { userAgent: command.userAgent }
+        : {}),
+      ...(command.ipAddress !== undefined
+        ? { ipAddress: command.ipAddress }
+        : {}),
+    };
+
+    await this.refreshSessionsRepository.create(refreshSessionInput);
 
     return {
       accessToken,

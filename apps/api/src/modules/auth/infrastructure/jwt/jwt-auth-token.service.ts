@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import type { JwtSignOptions } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import type {
   AccessTokenPayload,
@@ -17,11 +18,12 @@ export class JwtAuthTokenService implements AuthTokenService {
   async signAccessToken(payload: AccessTokenPayload): Promise<string> {
     const secret = this.configService.getOrThrow<string>('auth.accessSecret');
     const expiresIn = this.configService.getOrThrow<string>('auth.accessTtl');
-
-    return this.jwtService.signAsync(payload, {
+    const options: JwtSignOptions = {
       secret,
-      expiresIn,
-    });
+      expiresIn: expiresIn as NonNullable<JwtSignOptions['expiresIn']>,
+    };
+
+    return this.jwtService.signAsync(payload, options);
   }
 
   async signRefreshToken(payload: RefreshTokenPayload): Promise<string> {
@@ -29,10 +31,11 @@ export class JwtAuthTokenService implements AuthTokenService {
     const refreshTtlDays = this.configService.getOrThrow<number>(
       'auth.refreshTtlDays',
     );
-
-    return this.jwtService.signAsync(payload, {
+    const options: JwtSignOptions = {
       secret,
       expiresIn: `${refreshTtlDays}d`,
-    });
+    };
+
+    return this.jwtService.signAsync(payload, options);
   }
 }
